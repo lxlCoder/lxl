@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="CSS/swiper.min.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+    }
+    html,body,#app,.swiper-container{
+        height:100%;
+    }
+    body{
+        padding:30px;
+    }
+    .classA{
+        color:red;
+    }
+    .classB{
+        font-size: 64px;
+    }
+    .btn{
+        width:150px;
+        height:30px;
+        background-color: #FAF;
+        text-align: center;
+        line-height: 30px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="btn" @click="add">点击我</div>
+        <div v-for="item in dataList" v-html="item.childMsg"></div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            uname:'Alice',
+            dataList:["Alice","Tom","Jack"]
+        },
+        mounted:function(){
+            this.nextTick(function(){
+                var me = this;
+                dataList.$set(0, { childMsg: 'Changed!'})
+            })
+        },
+        methods:{
+            add:function(){
+                me.dataList.pop();
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>
